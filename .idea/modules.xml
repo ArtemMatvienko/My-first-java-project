@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/1DayTasks/1DayTasks.iml" filepath="$PROJECT_DIR$/1DayTasks/1DayTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2DayTasks/2DayTasks.iml" filepath="$PROJECT_DIR$/2DayTasks/2DayTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3DayTasks/3DayTasks.iml" filepath="$PROJECT_DIR$/3DayTasks/3DayTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4DayTasks/4DayTasks.iml" filepath="$PROJECT_DIR$/4DayTasks/4DayTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5DayTasks/5DayTasks.iml" filepath="$PROJECT_DIR$/5DayTasks/5DayTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/My-first-java-project.iml" filepath="$PROJECT_DIR$/.idea/My-first-java-project.iml" />
+    </modules>
+  </component>
+</project>
