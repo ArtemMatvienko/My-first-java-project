@@ -1,11 +1,10 @@
 package Long;
 
-import Reader.Read;
-
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
 
 
 class NoSuchLongWord extends java.io.IOException {
@@ -30,10 +29,11 @@ public class Find_word {
     }
 
     public static void main(String[] args) {
-        int size =75;
+        int size =8;
         NoSuchLongWord noSuchLongWord = new NoSuchLongWord(size);
 
         Find_word find_word =  new Find_word("/home/artem/java/project1/My-first-java-project/8DayTasks/src/Long/aaa.txt");
+
         try {
             String result = find_word.find_longest_word(size);
             System.out.println(result);
@@ -53,40 +53,61 @@ public class Find_word {
         catch (Exception ex) {
            System.out.println("Something wrong");
         }
+
         finally {
             System.out.println("Process is end");
         }
     }
 
 
-    public  String find_longest_word(int size) throws FileNotFoundException, NoSuchLongWord {
-        Scanner input_text = null;
+    public String find_longest_word(int size) throws IOException {
+        BufferedReader input_text = null;
+
         try {
-            input_text = new Scanner(new File(this.path));
+            input_text = new BufferedReader(new FileReader(this.path));
         }
         catch (FileNotFoundException ex) {
             System.out.println(String.format("ERROR: Can not found file %s", this.path));
             throw ex;
         }
-        ArrayList<String> storage = new ArrayList<String>();
-        String line;
-        String result = "";
-        while (input_text.hasNextLine()) {
-            line = input_text.nextLine();
-            String[] words = line.split(" ");
-            for (int i = 0; i < words.length; i++) {
 
-                if (words[i].length() == size) {
-                    result = words[i];
-                    break;
-                } else {
-                    continue;
-                }
-            }
+        //ArrayList <String> storage = new ArrayList<String>();
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+        while( ( line = input_text.readLine() ) != null ) {
+            stringBuilder.append( line );
+            stringBuilder.append( ls );
         }
-        if (result.length() < size) {
+
+
+
+        stringBuilder.deleteCharAt(stringBuilder.length()-1);
+        String temp = new String(stringBuilder);
+        String[] text_counter = temp.split(" ");
+
+        List<String> storage = Arrays.asList(text_counter);
+
+        //storage.add(temp);
+        //System.out.println(storage);
+        return find_word_with(storage, size);
+   }
+
+
+
+    public String find_word_with(List<String> storage,int size) throws NoSuchLongWord {
+        String result =  storage.stream()
+                   .filter(x-> x.length() == size)
+                   .filter(x-> x.startsWith("a"))
+                   //.filter(x-> x.endsWith("d"))
+                   .findFirst()
+                   .orElse(null);
+
+        if (result == null) {
            throw new NoSuchLongWord(size);
         }
+
         return result;
     }
 }
+
